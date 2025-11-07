@@ -1,5 +1,7 @@
 // src/components/ResultsPanel.jsx
-import React from "react";
+import React, {useRef} from "react";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import {
   DollarSign,
   Clock,
@@ -9,6 +11,8 @@ import {
   X,
 } from "lucide-react";
 
+
+
 const ResultsPanel = ({
   results,
   t,
@@ -17,8 +21,35 @@ const ResultsPanel = ({
   formatNumber,
   saveStatus,
 }) => {
+
+  const printRef = React.useRef(null);
+  const exportAsPdf = async () =>
+{
+  const element = printRef.current;
+  if (!element)
+  {
+    return ("error");
+  }
+  const canvas = await html2canvas(element, {scale: 2});
+  const data = canvas.toDataURL("image/png");
+  const pdf = new jsPDF({
+    orientation: "portrait",
+    unit: "px",
+    format: "a4",
+  });
+  
+  const imageProps = pdf.getImageProperties(data);
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = (imageProps.height * pdfWidth) / imageProps.width;
+
+  pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+  pdf.save("download.pdf");
+}
   return (
-    <div className="space-y-6">
+    <div 
+      className="space-y-6"
+       ref={printRef}
+    >
       {saveStatus.message && (
         <div
           className={`p-4 rounded-lg border ${
@@ -157,7 +188,8 @@ const ResultsPanel = ({
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-lg p-6">
+      <div 
+      className="bg-white rounded-xl shadow-lg p-6">
         <h3
           className={`text-xl font-bold text-gray-900 mb-4 ${
             isRTL ? "text-right" : ""
@@ -203,8 +235,9 @@ const ResultsPanel = ({
           </div>
         </div>
       </div>
-
-      <button className="w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-4 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg">
+      <button 
+      onClick={exportAsPdf}
+      className="w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-4 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg">
         📄 {t.exportReport}
       </button>
     </div>

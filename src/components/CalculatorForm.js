@@ -59,6 +59,25 @@ const CalculatorForm = ({
             ))}
           </select>
         </div>
+        <div>
+          <label
+            className={`block text-sm font-medium text-gray-700 mb-2 ${
+              isRTL ? "text-right" : ""
+            }`}
+          >
+            {t.monthlyConsumption}
+          </label>
+          <input
+            type="number"
+            name="monthlyConsumption"
+            value={formData.monthlyConsumption}
+            onChange={onInputChange}
+            placeholder={t.placeholderConsumption}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
+              isRTL ? "text-right" : ""
+            }`}
+          />
+        </div>
 
         <div>
           <label
@@ -83,27 +102,7 @@ const CalculatorForm = ({
             ))}
           </select>
         </div>
-
-        <div>
-          <label
-            className={`block text-sm font-medium text-gray-700 mb-2 ${
-              isRTL ? "text-right" : ""
-            }`}
-          >
-            {t.monthlyConsumption}
-          </label>
-          <input
-            type="number"
-            name="monthlyConsumption"
-            value={formData.monthlyConsumption}
-            onChange={onInputChange}
-            placeholder={t.placeholderConsumption}
-            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
-              isRTL ? "text-right" : ""
-            }`}
-          />
-        </div>
-
+        
         <div>
           <label
             className={`block text-sm font-medium text-gray-700 mb-2 ${
