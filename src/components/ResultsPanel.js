@@ -42,14 +42,14 @@ const ResultsPanel = ({
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = (imageProps.height * pdfWidth) / imageProps.width;
 
-  pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-  pdf.save("download.pdf");
+  pdf.addImage(data, "PNG", 23, 25, pdfWidth * 0.9, pdfHeight *0.9);
+  pdf.save("switchsmart_invoice.pdf");
 }
   return (
     <div 
-      className="space-y-6"
-       ref={printRef}
+      className="space-y-6"     
     >
+      <div  ref={printRef}>
       {saveStatus.message && (
         <div
           className={`p-4 rounded-lg border ${
@@ -235,7 +235,8 @@ const ResultsPanel = ({
           </div>
         </div>
       </div>
-      <button 
+       </div>
+        <button 
       onClick={exportAsPdf}
       className="w-full bg-gradient-to-r from-gray-700 to-gray-800 text-white py-4 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-900 transition-all shadow-lg">
         📄 {t.exportReport}
