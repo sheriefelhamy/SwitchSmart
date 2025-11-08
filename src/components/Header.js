@@ -32,7 +32,7 @@ const Header = ({ language, isRTL, t, onLanguageToggle }) => {
             >
               <span className="hidden sm:inline">{t.poweredBy}</span>
               <span className="font-semibold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-                Gemini & Vertex AI
+                Gemini AI
               </span>
             </div>
             <button
