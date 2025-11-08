@@ -36,7 +36,7 @@ const App = () => {
 
   //const [errors, setErrors] = useState({});
 
-  // IMPORTANT: Replace with your Google Apps Script URL
+ 
   const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwnWKTRffWHdR85ESzn6D2ZjYm09FQaJhcoXRKQuZx1G0jhRTsYvwb6iD9TWRU8OKywbw/exec";
 
@@ -55,23 +55,37 @@ const App = () => {
     setLanguage((prev) => (prev === "en" ? "ar" : "en"));
   };
 
-  
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;  
-   if (name === "monthlyConsumption" && value < 0) {
-    //setErrors(prev => ({
+
+   //setErrors(prev => ({
       //...prev,
       //monthlyConsumption: "Enter valid consumption",
     //})
  // );
-    return;   
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;  
+  if (name === "monthlyConsumption" && value < 0 || value > 1000000) 
+  {
+    console.log("enter valid input");
+    return;
+  } 
+   if(name === "operatingHours" && value > 24 || value < 0)
+  {
+    console.log("enter valid input");
+    return; 
   }
+  else if(name === "currentFuelCost" && (value < 0 || value > 10000))
+  {
+    console.log("enter valid input");
+    return;
+  }
+
   // clear error when valid input
  // setErrors(prev => ({
    // ...prev,
     //monthlyConsumption: "",
   //}))
-  
+    else
     {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }

@@ -22,7 +22,6 @@ const CalculatorForm = ({
   const fuelTypes = [
     { value: "diesel", label: t.diesel },
     { value: "heavy_oil", label: t.heavyOil },
-    { value: "lpg", label: t.lpg },
   ];
 
   const plantsize = [
@@ -87,7 +86,7 @@ const CalculatorForm = ({
           </select>
         </div>
 
-            //edit//
+      
 
         <div>
           <label
@@ -115,34 +114,6 @@ const CalculatorForm = ({
 
 
 
-
-              //edit//
-
-        <div>
-          <label
-            className={`block text-sm font-medium text-gray-700 mb-2 ${
-              isRTL ? "text-right" : ""
-            }`}
-          >
-            {t.monthlyConsumption}
-          </label>
-          <input
-            type="number"
-            name="monthlyConsumption"
-            value={formData.monthlyConsumption}
-            onChange={onInputChange}
-            placeholder={
-                    //  errors.monthlyConsumption
-                      //? errors.monthlyConsumption
-                      //:
-                       t.placeholderConsumption
-                        }
-          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
-          isRTL ? "text-right" : ""
-             }`}
-          />
-        </div>
-
         <div>
           <label
             className={`block text-sm font-medium text-gray-700 mb-2 ${
@@ -167,6 +138,34 @@ const CalculatorForm = ({
           </select>
         </div>
 
+
+           <div>
+          <label
+            className={`block text-sm font-medium text-gray-700 mb-2 ${
+              isRTL ? "text-right" : ""
+            }`}
+          >
+            {t.monthlyConsumption}
+          </label>
+          <input
+            type="number"
+            name="monthlyConsumption"
+            value={formData.monthlyConsumption}
+            onChange={onInputChange}
+            placeholder={
+                    //errors.monthlyConsumption
+                      //? errors.monthlyConsumption
+                      //:
+                       t.placeholderConsumption
+                        }
+          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
+          isRTL ? "text-right" : ""
+             }`}
+          />
+        </div>
+
+
+
         <div>
           <label
             className={`block text-sm font-medium text-gray-700 mb-2 ${
@@ -181,7 +180,7 @@ const CalculatorForm = ({
             name="currentFuelCost"
             value={formData.currentFuelCost}
             onChange={onInputChange}
-            placeholder={t.placeholderCost}
+            placeholder={t.placeholderFuelCost}
             className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
               isRTL ? "text-right" : ""
             }`}

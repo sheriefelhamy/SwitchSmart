@@ -102,7 +102,6 @@ const ResultsPanel = ({
       const fuelMap = {
         diesel: language === 'ar' ? 'الديزل' : 'Diesel',
         heavy_oil: language === 'ar' ? 'الزيت الثقيل' : 'Heavy Fuel Oil',
-        lpg: language === 'ar' ? 'الغاز البترولي المسال' : 'LPG'
       };
 
       const overviewData = [
