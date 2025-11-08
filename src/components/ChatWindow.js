@@ -57,7 +57,8 @@ const ChatWindow = ({
           </div>
         ))}
       </div>
-
+      
+        {/* <div ref={messagesEndRef} /> */}
       <div className="border-t p-4">
         <div
           className={`flex space-x-2 ${

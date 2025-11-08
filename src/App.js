@@ -1,5 +1,6 @@
 // src/App.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { GoogleGenAI } from "@google/genai";
 import { translations } from "./data/translations";
 import Header from "./components/Header";
 import TabNavigation from "./components/TabNavigation";
@@ -33,9 +34,11 @@ const App = () => {
 
   const t = translations[language];
   const isRTL = language === "ar";
+    const ai = new GoogleGenAI({
+    apiKey: process.env.REACT_APP_GEMINI_API_KEY,
+  });
 
-  //const [errors, setErrors] = useState({});
-
+  const messagesEndRef = useRef(null);
  
   const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbz6y3D5PW15Cciyu1UMcAA7xriCGrzDSA4U5YefWua9Wy5CQSc3RLBDToqY5RmET2bdPQ/exec";
@@ -64,31 +67,25 @@ const App = () => {
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;  
-  if (name === "monthlyConsumption" && value < 0 || value > 1000000) 
+  if ((name === "monthlyConsumption") && (value < 0 || value > 100000000)) 
   {
     console.log("enter valid input");
     return;
   } 
-   if(name === "operatingHours" && value > 24 || value < 0)
+   if((name === "operatingHours") && (value > 24 || value < 0))
   {
     console.log("enter valid input");
     return; 
   }
-  else if(name === "currentFuelCost" && (value < 0 || value > 10000))
+  else if((name === "currentFuelCost") && (value < 0 || value > 10000))
   {
     console.log("enter valid input");
     return;
   }
-
-  // clear error when valid input
- // setErrors(prev => ({
-   // ...prev,
-    //monthlyConsumption: "",
-  //}))
-    else
-    {
+  else
+  {
       setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+  }
   };
 
   const formatNumber = (num) => {
@@ -171,52 +168,24 @@ const App = () => {
     await saveToGoogleSheets();
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
     setMessages((prev) => [...prev, { role: "user", content: inputMessage }]);
-
-    setTimeout(() => {
-      let response = "";
-      const lowerInput = inputMessage.toLowerCase();
-
-      if (
-        lowerInput.includes("savings") ||
-        lowerInput.includes("save") ||
-        lowerInput.includes("توفير")
-      ) {
-        response = t.aiSavings;
-      } else if (
-        lowerInput.includes("payback") ||
-        lowerInput.includes("roi") ||
-        lowerInput.includes("استرداد")
-      ) {
-        response = t.aiPayback;
-      } else if (
-        lowerInput.includes("emission") ||
-        lowerInput.includes("co2") ||
-        lowerInput.includes("انبعاثات")
-      ) {
-        response = t.aiEmission;
-      } else if (
-        lowerInput.includes("process") ||
-        lowerInput.includes("how") ||
-        lowerInput.includes("عملية") ||
-        lowerInput.includes("كيف")
-      ) {
-        response = t.aiProcess;
-      } else {
-        response = t.aiDefault;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: response },
-      ]);
-    }, 1000);
-
     setInputMessage("");
-  };
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    let response = "";
+    const lowerInput = inputMessage.toLowerCase();
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const reply = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: lowerInput,
+    });
+    response = reply.text;
+
+    setMessages((prev) => [...prev, { role: "assistant", content: response }]);
+  };
 
   return (
     <div
