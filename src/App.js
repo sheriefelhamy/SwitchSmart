@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { translations } from "./data/translations";
 import Header from "./components/Header";
@@ -38,7 +38,6 @@ const App = () => {
     apiKey: process.env.REACT_APP_GEMINI_API_KEY,
   });
 
-  const messagesEndRef = useRef(null);
  
   const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbyWO18nlnB-WQBoQW__SEGZ7clGRqA79dx-sdcPnUVoiBAUFPBGuuWSR7JHc99bdZs/exec";
@@ -173,7 +172,6 @@ const App = () => {
 
     setMessages((prev) => [...prev, { role: "user", content: inputMessage }]);
     setInputMessage("");
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     let response = "";
     const lowerInput = inputMessage.toLowerCase();
 
