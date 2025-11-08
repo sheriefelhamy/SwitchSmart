@@ -41,7 +41,7 @@ const App = () => {
   const messagesEndRef = useRef(null);
  
   const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz6y3D5PW15Cciyu1UMcAA7xriCGrzDSA4U5YefWua9Wy5CQSc3RLBDToqY5RmET2bdPQ/exec";
+    "https://script.google.com/macros/s/AKfycbyWO18nlnB-WQBoQW__SEGZ7clGRqA79dx-sdcPnUVoiBAUFPBGuuWSR7JHc99bdZs/exec";
 
   // Initialize chat messages
   useEffect(() => {

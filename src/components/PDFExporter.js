@@ -96,7 +96,10 @@ const ResultsPanel = ({
         chemicals: language === 'ar' ? 'المعالجة الكيميائية' : 'Chemical Processing',
         textiles: language === 'ar' ? 'إنتاج المنسوجات' : 'Textile Production',
         food: language === 'ar' ? 'تجهيز الأغذية' : 'Food Processing',
-        glass: language === 'ar' ? 'تصنيع الزجاج' : 'Glass Manufacturing'
+        glass: language === 'ar' ? 'تصنيع الزجاج' : 'Glass Manufacturing',
+        paper: language === 'ar' ? 'تصنيع الورق' : 'Paper Manufacturing',
+        plastic: language === 'ar' ? 'تصنيع البلاستيك' : 'Plastic Manufacturing',
+        other: language === 'ar' ? 'أخرى' : 'Other',
       };
 
       const fuelMap = {

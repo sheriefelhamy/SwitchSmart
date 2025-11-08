@@ -17,6 +17,9 @@ const CalculatorForm = ({
     { value: "textiles", label: t.textiles },
     { value: "food", label: t.food },
     { value: "glass", label: t.glass },
+    { value: "paper", label: t.paper },
+    { value: "plastic", label: t.plastic },
+    { value: "other", label: t.other },
   ];
 
   const fuelTypes = [
