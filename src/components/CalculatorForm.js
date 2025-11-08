@@ -25,6 +25,12 @@ const CalculatorForm = ({
     { value: "lpg", label: t.lpg },
   ];
 
+  const plantsize = [
+    { value: "small", label: t.small },
+    { value: "medium", label: t.medium },
+    { value: "large", label: t.large },
+  ];
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h2
@@ -36,6 +42,27 @@ const CalculatorForm = ({
       </h2>
 
       <div className="space-y-6">
+
+        <div>
+          <label
+            className={`block text-sm font-medium text-gray-700 mb-2 ${
+              isRTL ? "text-right" : ""
+            }`}
+          >
+            {t.name}
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={onInputChange}
+            placeholder={t.placeholderName}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
+              isRTL ? "text-right" : ""
+            }`}
+          />
+        </div>
+
         <div>
           <label
             className={`block text-sm font-medium text-gray-700 mb-2 ${
@@ -59,6 +86,38 @@ const CalculatorForm = ({
             ))}
           </select>
         </div>
+
+            //edit//
+
+        <div>
+          <label
+            className={`block text-sm font-medium text-gray-700 mb-2 ${
+              isRTL ? "text-right" : ""
+            }`}
+          >
+            {t.plantsize}
+          </label>
+          <select
+            name="plantsize"
+            value={formData.plantsize }
+            onChange={onInputChange}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
+              isRTL ? "text-right" : ""
+            }`}
+          >
+            {plantsize.map((type) => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+
+
+
+              //edit//
+
         <div>
           <label
             className={`block text-sm font-medium text-gray-700 mb-2 ${
@@ -72,10 +131,15 @@ const CalculatorForm = ({
             name="monthlyConsumption"
             value={formData.monthlyConsumption}
             onChange={onInputChange}
-            placeholder={t.placeholderConsumption}
-            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
-              isRTL ? "text-right" : ""
-            }`}
+            placeholder={
+                    //  errors.monthlyConsumption
+                      //? errors.monthlyConsumption
+                      //:
+                       t.placeholderConsumption
+                        }
+          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
+          isRTL ? "text-right" : ""
+             }`}
           />
         </div>
 
@@ -102,7 +166,7 @@ const CalculatorForm = ({
             ))}
           </select>
         </div>
-        
+
         <div>
           <label
             className={`block text-sm font-medium text-gray-700 mb-2 ${

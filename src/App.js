@@ -20,7 +20,9 @@ const App = () => {
   const [isSaving, setIsSaving] = useState(false);
 
   const [formData, setFormData] = useState({
+    name: "",
     industryType: "cement",
+    plantsize: "",
     currentFuel: "diesel",
     monthlyConsumption: "",
     currentFuelCost: "",
@@ -31,6 +33,8 @@ const App = () => {
 
   const t = translations[language];
   const isRTL = language === "ar";
+
+  //const [errors, setErrors] = useState({});
 
   // IMPORTANT: Replace with your Google Apps Script URL
   const GOOGLE_SCRIPT_URL =
@@ -51,9 +55,26 @@ const App = () => {
     setLanguage((prev) => (prev === "en" ? "ar" : "en"));
   };
 
+  
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = e.target;  
+   if (name === "monthlyConsumption" && value < 0) {
+    //setErrors(prev => ({
+      //...prev,
+      //monthlyConsumption: "Enter valid consumption",
+    //})
+ // );
+    return;   
+  }
+  // clear error when valid input
+ // setErrors(prev => ({
+   // ...prev,
+    //monthlyConsumption: "",
+  //}))
+  
+    {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const formatNumber = (num) => {
@@ -95,7 +116,9 @@ const App = () => {
 
     try {
       const dataToSave = {
+        name: formData.name,
         industryType: formData.industryType,
+        plantsize: formData.plantsize,
         currentFuel: formData.currentFuel,
         monthlyConsumption: formData.monthlyConsumption,
         currentFuelCost: formData.currentFuelCost,

@@ -13,6 +13,10 @@ export const translations = {
     currentFuelCost: "Current Fuel Cost (SAR per Liter)",
     operatingHours: "Daily Operating Hours",
     location: "Facility Location (City)",
+    plantsize: "Plant Size",
+    small: "Small",
+    medium: "Medium",
+    large: "Large",
     conversionCost: "Estimated Conversion Cost (SAR) - Optional",
     defaultCost: "Default: 500,000 SAR",
     leaveBlank: "Leave blank to use default estimate",
@@ -21,6 +25,7 @@ export const translations = {
     saving: "Saving...",
     savedSuccessfully: "Saved Successfully!",
     saveFailed: "Save Failed. Try Again.",
+    name: "Factory Name",
     cement: "Cement Factory",
     steel: "Steel Manufacturing",
     chemicals: "Chemical Processing",
@@ -30,6 +35,7 @@ export const translations = {
     diesel: "Diesel",
     heavyOil: "Heavy Fuel Oil",
     lpg: "LPG",
+    placeholderName: "e.g., Factory 1",
     placeholderConsumption: "e.g., 50000",
     placeholderCost: "e.g., 2.50",
     placeholderHours: "e.g., 16",
@@ -151,6 +157,11 @@ export const translations = {
       "تتضمن عملية التحويل عادةً: 1) تقييم البنية التحتية، 2) توصيل خط أنابيب الغاز أو إعداد التخزين، 3) تعديلات الشعلات/الغلايات، 4) تركيب أنظمة السلامة، 5) الاختبار والتشغيل. تستغرق العملية بأكملها 3-6 أشهر في المتوسط.",
     aiDefault:
       "يمكنني مساعدتك بمعلومات حول توفير التكاليف، الفوائد البيئية، فترات الاسترداد، عملية التحويل، أو إجراء سيناريوهات افتراضية. ماذا تريد أن تستكشف؟",
+    plantsize: "حجم المصنع",
+    small: "صغير",
+    medium: "متوسط",
+    large: "كبير",
+    name: "اسم المصنع",
   },
 };
 
