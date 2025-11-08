@@ -22,7 +22,7 @@ const App = () => {
   const [formData, setFormData] = useState({
     name: "",
     industryType: "cement",
-    plantsize: "",
+    plantsize: "small",
     currentFuel: "diesel",
     monthlyConsumption: "",
     currentFuelCost: "",
@@ -38,7 +38,7 @@ const App = () => {
 
  
   const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwnWKTRffWHdR85ESzn6D2ZjYm09FQaJhcoXRKQuZx1G0jhRTsYvwb6iD9TWRU8OKywbw/exec";
+    "https://script.google.com/macros/s/AKfycbz6y3D5PW15Cciyu1UMcAA7xriCGrzDSA4U5YefWua9Wy5CQSc3RLBDToqY5RmET2bdPQ/exec";
 
   // Initialize chat messages
   useEffect(() => {
@@ -102,10 +102,10 @@ const App = () => {
     const currentCost = parseFloat(formData.currentFuelCost);
     const conversionCost = parseFloat(formData.conversionCost) || 500000;
 
-    const gasPrice = currentCost * 0.65;
-    const annualSavings = (currentCost - gasPrice) * consumption * 12;
+    const gasPrice = currentCost * 0.63;
+    const annualSavings = ((currentCost )- (gasPrice * 1.1))* consumption* 12 ;
     const paybackMonths = (conversionCost / (annualSavings / 12)).toFixed(1);
-    const co2Reduction = consumption * 12 * 2.68 * 0.4;
+    const co2Reduction = (consumption * 12 * 75)-(consumption*1.1*12*53);
 
     setResults({
       annualSavings: annualSavings.toFixed(0),
@@ -116,7 +116,7 @@ const App = () => {
       currentCost: currentCost.toFixed(2),
       roi: ((annualSavings / conversionCost) * 100).toFixed(1),
       conversionCost: conversionCost,
-    });
+    });
 
     setActiveTab("results");
     setSaveStatus({ type: "", message: "" });
